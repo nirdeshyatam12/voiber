@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voiber</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* Overall body styling */
+        body {
+            margin: 0;
+            padding: 10px; /* Space for the border */
+            background: linear-gradient(145deg, #ffffff, #000000); /* Dynamic, metallic background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif; /* Stylish body font */
+        }
+
+        /* Header styling */
+        .header {
+            font-size: 48px;
+            font-weight: bold;
+            color: #6200EA;
+            font-family: 'Poppins', sans-serif; /* Stylish header font */
+            margin-bottom: 20px;
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%); /* Centering the header horizontally */
+            margin-top: 10px;
+        }
+
+        /* PIN display screen container styling */
+        .pin-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        /* PIN display screen styling */
+        .pin-display {
+            background-color: #000;
+            color: #FFF;
+            border-radius: 20px; /* Curved border */
+            border: 6px solid;
+            padding: 3px;
+            width: 220px;
+            height: 80px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 36px;
+            letter-spacing: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* Subtle box-shadow */
+            overflow: hidden; /* Hide overflow during animations */
+        }
+
+        /* Lock symbol styling */
+        .lock-symbol {
+            font-size: 50px;
+            color: #777255; /* Gold color */
+            margin-left: 15px;
+        }
+
+        /* Pin digits as dots */
+        .pin-display span {
+            font-size: 36px;
+            font-family: 'Courier New', Courier, monospace; /* Monospace for clear digits */
+            display: inline-block;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        /* Microphone button styling */
+        .mic-button {
+            background-color: #6200EA;
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            bottom: 120px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .mic-button:hover {
+            transform: scale(1.1); /* Scale effect on hover */
+        }
+
+        /* Classic microphone icon styling */
+        .mic-button::before {
+            content: "\1F399"; /* Classic microphone symbol */
+            font-size: 36px;
+            color: #FFF;
+        }
+
+        /* Stylish and futuristic arrow button styling */
+        .arrow-button {
+            background: linear-gradient(145deg, #311B92, #6A1B9A);
+            color: #FFF;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px #7C4DFF; /* Added glow effect */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .arrow-button:hover {
+            transform: scale(1.15); /* Scale effect on hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 25px #7C4DFF; /* Enhanced glow effect on hover */
+        }
+
+        /* Custom SVG right-pointing arrow icon */
+        .arrow-button svg {
+            width: 28px;
+            height: 28px;
+            fill: #FFF;
+        }
+
+        /* Instruction text styling */
+        .instruction-text {
+            font-size: 20px;
+            color: #FFF;
+            font-family: 'Poppins', sans-serif; /* Stylish instruction text font */
+            text-align: center;
+            margin-top: 10px;
+            position: absolute;
+            bottom: 60px;
+        }
+
+        /* Recording status text styling */
+        .recording-text {
+            font-size: 20px;
+            color: #FFF;
+            font-family: 'Poppins', sans-serif; /* Stylish recording text font */
+            text-align: center;
+            margin-top: 10px;
+            position: absolute;
+            top: 495px;
+        }
+
+        /* Menu button styling */
+        .menu-button {
+            background-color: #311B92;
+            color: #FFF;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .menu-button:hover {
+            transform: scale(1.1); /* Scale effect on hover */
+        }
+
+        /* Menu icon styling */
+        .menu-button::before {
+            content: "\2630"; /* Hamburger menu symbol */
+            font-size: 24px;
+        }
+
+        /* Menu box styling */
+        .menu-box {
+            background-color: #444;
+            border-radius: 15px;
+            padding: 20px;
+            width: 220px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            display: none; /* Hidden by default */
+            z-index: 10;
+        }
+
+        /* Menu box button styling */
+        .menu-box button {
+            background-color: #6200EA;
+            border: none;
+            color: #FFF;
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .menu-box button:hover {
+            background-color: #3700B3;
+        }
+
+        /* Social media button icons */
+        .menu-box button::before {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .menu-box .twitter::before {
+            content: "\f099";
+            font-family: FontAwesome;
+        }
+
+        .menu-box .instagram::before {
+            content: "\f16d";
+            font-family: FontAwesome;
+        }
+
+        .menu-box .youtube::before {
+            content: "\f167";
+            font-family: FontAwesome;
+        }
+
+        .menu-box .help::before {
+            content: "\f128";
+            font-family: FontAwesome;
+        }
+        .menu-box .about::before {
+            content: "\f128";
+            font-family: FontAwesome;
+        }
+        
+        /* Footer styling */
+        .footer {
+            background: linear-gradient(145deg, #000000, #000000);
+            color: #FFF;
+            padding: 1px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; /* Stylish footer font */
+            position: absolute;
+            bottom: 0.5%;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+
+        .footer a {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Keyframes for fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu button -->
+    <button class="menu-button" id="menuButton"></button>
+
+    <!-- Header with app name -->
+    <div class="header">Voiber</div>
+
+    <!-- PIN display screen container with lock symbol -->
+    <div class="pin-container">
+        <div class="pin-display" id="pinDisplay">
+            <span>&bull;</span><span>&bull;</span><span>&bull;</span><span>&bull;</span>
+        </div>
+    </div>
+
+    <!-- Microphone button -->
+    <button class="mic-button" id="micButton"></button>
+
+    <!-- Instruction text -->
+    <div class="instruction-text">Record your voice to generate a unique PIN</div>
+
+    <!-- Recording status text -->
+    <div class="recording-text" id="recordingText"></div>
+
+    <!-- Futuristic arrow button -->
+    <a href="step2.html" class="arrow-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/></svg>
+    </a>
+
+    <!-- Menu box with login, help, and social media buttons -->
+  <!-- Menu box with login, help, and social media buttons -->
+<div class="menu-box" id="menuBox">
+    <button class="login"><a href="login.html" style="color: #FFF; text-decoration: none;">Login</a></button>
+    <button class="help">Help</button>
+    <button class="twitter">Twitter</button>
+    <button class="instagram">Instagram</button>
+    <button class="youtube">YouTube</button>
+    <button class="about">About</button>
+</div>
+
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Voiber. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <!-- JavaScript for handling menu toggle and recording -->
+    <script>
+        // Menu toggle logic
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const menuBox = document.getElementById('menuBox');
+            menuBox.style.display = menuBox.style.display === 'none' || menuBox.style.display === '' ? 'block' : 'none';
+        });
+
+        // Hide the menu box when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const menuBox = document.getElementById('menuBox');
+            const menuButton = document.getElementById('menuButton');
+            if (!menuBox.contains(event.target) && !menuButton.contains(event.target)) {
+                menuBox.style.display = 'none';
+            }
+        });
+
+        // Microphone recording logic
+        document.getElementById('micButton').addEventListener('click', function() {
+            const recordingText = document.getElementById('recordingText');
+            const pinDisplay = document.getElementById('pinDisplay');
+            const dots = pinDisplay.querySelectorAll('span');
+            recordingText.textContent = 'Recording for 3 seconds...';
+
+            // After 5 seconds, generate random numbers and display them
+            setTimeout(function() {
+                recordingText.textContent = ''; // Clear the message after 5 seconds
+
+                // Generate 4 random numbers
+                const randomNumbers = Array.from({length: 4}, () => Math.floor(Math.random() * 10));
+
+                // Display the random numbers with animation
+                randomNumbers.forEach((number, index) => {
+                    dots[index].textContent = number;
+                    dots[index].style.animation = 'fadeIn 1s ease-in-out';
+                });
+            }, 3000);
+
+            // Here you would also add your audio recording logic
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voiber - Login</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* Overall body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(145deg, #ffffff, #000000);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+
+        /* Login container styling */
+        .login-container {
+            background: #333;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Input fields styling */
+        .login-container input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #6200EA;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box; /* Ensure padding doesn't affect width */
+        }
+
+        /* Submit button styling */
+        .login-container button {
+            background-color: #6200EA;
+            color: #FFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .login-container button:hover {
+            background-color: #3700B3;
+        }
+
+        /* Header styling */
+        .header {
+            font-size: 36px;
+            font-weight: bold;
+            color: #6200EA;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        /* Back button styling */
+        .back-button {
+            background: linear-gradient(145deg, #311B92, #6A1B9A);
+            color: #FFF;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .back-button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-button svg {
+            width: 28px;
+            height: 28px;
+            fill: #FFF;
+        }
+
+        /* Footer styling */
+        .footer {
+            background: linear-gradient(145deg, #000000, #000000);
+            color: #FFF;
+            padding: 1px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; /* Stylish footer font */
+            position: absolute;
+            bottom: 0.1%;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer a {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back button to return to the previous page -->
+    <a href="voiber2.html" class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 7l-5 5 5 5v-10z"/></svg>
+    </a>
+
+    <!-- Login container -->
+    <div class="login-container">
+        <div class="header">Login</div>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email ID" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="androidVersion" placeholder="Android Version" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Voiber. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the form from submitting in the traditional way
+
+            // Get form data
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const androidVersion = document.getElementById('androidVersion').value;
+
+            // Handle the form data (e.g., send it to the server or validate it)
+            console.log('Email:', email);
+            console.log('Password:', password);
+            console.log('Android Version:', androidVersion);
+
+            // For demonstration purposes, you can simulate a successful login here
+            // Redirect to another page (e.g., the next step in your process)
+            window.location.href = 'voiber2.html'; // Replace with your actual redirection URL
+        });
+    </script>
+</body>
+</html>

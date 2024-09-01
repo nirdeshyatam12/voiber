@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voiber - Step 3</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* Overall body styling */
+        body {
+            margin: 0;
+            padding: 10px; /* Space for the border */
+            background: linear-gradient(145deg, #ffffff, #000000); /* Dynamic, metallic background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif; /* Stylish body font */
+        }
+
+        /* Header styling */
+        .header {
+            font-size: 48px;
+            font-weight: bold;
+            color: #6200EA;
+            font-family: 'Poppins', sans-serif; /* Stylish header font */
+            margin-bottom: 20px;
+            position: absolute;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%); /* Centering the header horizontally */
+            margin-top: 10px;
+        }
+
+        /* Question box styling */
+        .question-box {
+            background: #6200EA;
+            color: #FFF;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            font-size: 24px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Answer input styling */
+        .answer-box {
+            width: calc(100% - 120px);
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 2px solid #6200EA;
+            margin-right: 10px;
+            flex: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Submit button styling */
+        .submit-button {
+            background-color: #311B92;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #6A1B9A;
+        }
+
+        /* Arrow buttons styling */
+        .arrow-button {
+            background: linear-gradient(145deg, #311B92, #6A1B9A);
+            color: #FFF;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 15px #7C4DFF; /* Added glow effect */
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: absolute;
+        }
+
+        .arrow-button:hover {
+            transform: scale(1.15); /* Scale effect on hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 25px #7C4DFF; /* Enhanced glow effect on hover */
+        }
+
+        .arrow-button svg {
+            width: 28px;
+            height: 28px;
+            fill: #FFF;
+        }
+
+        /* Back arrow button */
+        .back-arrow-button {
+            top: 20px;
+            left: 20px;
+        }
+
+        /* Next arrow button */
+        .next-arrow-button {
+            top: 20px;
+            right: 20px;
+        }
+
+        .footer {
+            background: linear-gradient(145deg, #000000, #000000);
+            color: #FFF;
+            padding: 1px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; /* Stylish footer font */
+            position: absolute;
+            bottom: 0.5%;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer a {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Flex container for question box, answer input, and submit button */
+        .question-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header for Step 3 -->
+    <div class="header">Voiber</div>
+
+    <!-- Question Box -->
+    <div id="questionBox" class="question-box">What is your favorite color?</div>
+
+    <!-- Answer Input and Submit Button -->
+    <div class="question-container">
+        <input type="text" id="answerInput" class="answer-box" placeholder="Type your answer here...">
+        <button class="submit-button" id="submitButton">Submit</button>
+    </div>
+
+    <!-- Back arrow button to return to the previous page -->
+    <a href="step2.html" class="arrow-button back-arrow-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 7l-5 5 5 5v-10z"/></svg>
+    </a>
+
+    <!-- Next arrow button to proceed to the next page -->
+    <a href="savefile.html" class="arrow-button next-arrow-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/></svg>
+    </a>
+
+    <footer class="footer">
+        <p>&copy; 2024 Voiber. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        const questions = [
+            "What is your favorite color?",
+            "What is your favorite food?",
+            "What is your favorite hobby?"
+        ];
+        let currentQuestionIndex = 0;
+
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const answerInput = document.getElementById('answerInput').value.trim();
+            if (answerInput !== "") {
+                currentQuestionIndex++;
+
+                if (currentQuestionIndex < questions.length) {
+                    document.getElementById('questionBox').innerHTML = questions[currentQuestionIndex];
+                    document.getElementById('answerInput').value = "";
+                } else {
+                    document.getElementById('questionBox').innerHTML = "Thank you for your responses!";
+                    document.getElementById('answerInput').style.display = 'none';
+                    document.getElementById('submitButton').style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
